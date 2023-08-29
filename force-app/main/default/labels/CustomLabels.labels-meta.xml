@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>Account_Is_Created</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Account Is Created</shortDescription>
+        <value>Account is successfully is created.</value>
+    </labels>
+    <labels>
+        <fullName>Account_Is_Updated</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Account Is Updated</shortDescription>
+        <value>Account is successfully is updated.</value>
+    </labels>
+    <labels>
+        <fullName>Account_Record_Page_Base_Url</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Account Record Page Base Url</shortDescription>
+        <value>https://fexleservices--dev5.sandbox.lightning.force.com/lightning/r/Account/</value>
+    </labels>
+    <labels>
+        <fullName>Account_Team_UserName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Account Team UserName</shortDescription>
+        <value>partner@onboarding.com.dev5</value>
+    </labels>
+    <labels>
+        <fullName>Accurate_Information</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Accurate Information</shortDescription>
+        <value>Please fill all the information carefully and make sure all the information your are providing, is accurate</value>
+    </labels>
+    <labels>
+        <fullName>Bank_Info</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Bank Info</shortDescription>
+        <value>BANK DETAILS</value>
+    </labels>
+    <labels>
+        <fullName>Billing_Info</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Billing Info</shortDescription>
+        <value>BILLING ADDRESS</value>
+    </labels>
+    <labels>
+        <fullName>Cancel_Cheque_Pdf</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cancel Cheque Pdf</shortDescription>
+        <value>canChePdf</value>
+    </labels>
+    <labels>
+        <fullName>Cancel_Cheque_Uploaded</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Cancel Cheque Uploaded</shortDescription>
+        <value>Company Cancelled Cheque Copy Uploaded</value>
+    </labels>
+    <labels>
+        <fullName>Cancelled_cheque</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cancelled cheque</shortDescription>
+        <value>Cancelled cheque</value>
+    </labels>
+    <labels>
+        <fullName>Cannot_Be_Updated</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Cannot Be Updated</shortDescription>
+        <value>Once submitted, information cannot be updated</value>
+    </labels>
+    <labels>
+        <fullName>Comp_Cert_Uploaded</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Comp Cert Uploaded</shortDescription>
+        <value>Company Certification Document Uploaded</value>
+    </labels>
+    <labels>
+        <fullName>Company_Certificate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Company Certificate</shortDescription>
+        <value>Company Certificate</value>
+    </labels>
+    <labels>
+        <fullName>Company_Certificate_Pdf</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Company Certificate Pdf</shortDescription>
+        <value>comCertPdf</value>
+    </labels>
+    <labels>
+        <fullName>Company_Not_Found</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Company Not Found</shortDescription>
+        <value>Company Not Found</value>
+    </labels>
+    <labels>
+        <fullName>Compny_Info</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Compny Info</shortDescription>
+        <value>PLEASE ENTER YOUR COMPANY INFORMATION</value>
+    </labels>
+    <labels>
+        <fullName>Contact_Info</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Contact_Info</shortDescription>
+        <value>Account Details</value>
+    </labels>
+    <labels>
+        <fullName>Contact_Is_Created</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Contact Is Created</shortDescription>
+        <value>Resource is successfully created.</value>
+    </labels>
+    <labels>
+        <fullName>Documents_Upload</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Documents Upload</shortDescription>
+        <value>Documents Upload</value>
+    </labels>
+    <labels>
+        <fullName>Documents_Uploaded_Successfully</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Documents Uploaded Successfully</shortDescription>
+        <value>Documents are uploaded successfully.</value>
+    </labels>
+    <labels>
+        <fullName>File_Format</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>File Format</shortDescription>
+        <value>base64,</value>
+    </labels>
+    <labels>
+        <fullName>Find_Company</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Find Company</shortDescription>
+        <value>FIND YOUR COMPANY</value>
+    </labels>
+    <labels>
+        <fullName>Finish_Button_Name</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Finish Button Name</shortDescription>
+        <value>finish</value>
+    </labels>
+    <labels>
+        <fullName>First_Digit_of_Aadhar_Card_Number</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>First Digit of Aadhar Card Number</shortDescription>
+        <value>First Digit should not be 0 or 1</value>
+    </labels>
+    <labels>
+        <fullName>Five_Steps_Graphics_Label</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Five Steps Graphics Label</shortDescription>
+        <value>5 EASY STEPS FOR SMOOTH ONBOARDING PROCESS</value>
+    </labels>
+    <labels>
+        <fullName>Flow_Finished_Status</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Flow Finished Status</shortDescription>
+        <value>FINISHED_SCREEN</value>
+    </labels>
+    <labels>
+        <fullName>Found_Text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Found Text</shortDescription>
+        <value>Found</value>
+    </labels>
+    <labels>
+        <fullName>GST_Certificate</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GST Certificate</shortDescription>
+        <value>Gst Certificate</value>
+    </labels>
+    <labels>
+        <fullName>GST_Pdf</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>GST Pdf</shortDescription>
+        <value>gstPdf</value>
+    </labels>
+    <labels>
+        <fullName>GST_Uploaded</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>GST Uploaded</shortDescription>
+        <value>GST Certificate Document Uploaded</value>
+    </labels>
+    <labels>
+        <fullName>Hr_Team_UserName</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Hr Team UserName</shortDescription>
+        <value>varsha.adwani@fexle.com.dev5</value>
+    </labels>
+    <labels>
+        <fullName>Individual_Partner_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Individual Partner Label</shortDescription>
+        <value>If you are working/signing up as an individual contributor with FEXLE.</value>
+    </labels>
+    <labels>
+        <fullName>Individual_Partner_Value</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Individual Partner Value</shortDescription>
+        <value>individual_partner_signup</value>
+    </labels>
+    <labels>
+        <fullName>Invalid_Aadhar_Card_Number</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Invalid Aadhar Card Number</shortDescription>
+        <value>Invalid Aadhar Card Number. It should be in the format of xxxx xxxx xxxx</value>
+    </labels>
+    <labels>
+        <fullName>Invalid_Email</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Invalid Email</shortDescription>
+        <value>Invalid format of Email. It should be like abc@abc.com</value>
+    </labels>
+    <labels>
+        <fullName>Invalid_Website</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Invalid Website</shortDescription>
+        <value>Invalid format of website. It should be like www.google.com</value>
+    </labels>
+    <labels>
+        <fullName>Length_of_Record_Id</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Length of Record Id</shortDescription>
+        <value>18</value>
+    </labels>
+    <labels>
+        <fullName>Mandatory_Label</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Mandatory Label</shortDescription>
+        <value>All the information on this page, is mandatory</value>
+    </labels>
+    <labels>
+        <fullName>Not_Uploaded</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Not Uploaded</shortDescription>
+        <value>not uploaded</value>
+    </labels>
+    <labels>
+        <fullName>One_Value_Require</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>One Value Require</shortDescription>
+        <value>At least one value require either Company Name or Website</value>
+    </labels>
+    <labels>
+        <fullName>PAN_Card</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PAN Card</shortDescription>
+        <value>PAN Card</value>
+    </labels>
+    <labels>
+        <fullName>PAN_Pdf</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>PAN Pdf</shortDescription>
+        <value>panPdf</value>
+    </labels>
+    <labels>
+        <fullName>Pan_Uploaded</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Pan Uploaded</shortDescription>
+        <value>PAN Number Document Uploaded</value>
+    </labels>
+    <labels>
+        <fullName>Partner_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Partner Label</shortDescription>
+        <value>If you are working/signing up as a company and you are the primary contact.</value>
+    </labels>
+    <labels>
+        <fullName>Partner_Value</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Partner Value</shortDescription>
+        <value>partner_signup</value>
+    </labels>
+    <labels>
+        <fullName>Person_Account_Is_Created</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Person Account Is Created</shortDescription>
+        <value>Person Account is successfully created.</value>
+    </labels>
+    <labels>
+        <fullName>Personal_Information</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Personal Information</shortDescription>
+        <value>PLEASE ENTER YOUR INFORMATION</value>
+    </labels>
+    <labels>
+        <fullName>Read_Carefully</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Read Carefully</shortDescription>
+        <value>Please read carefully</value>
+    </labels>
+    <labels>
+        <fullName>Required_Field_Error</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Required Field Error</shortDescription>
+        <value>Complete this field.</value>
+    </labels>
+    <labels>
+        <fullName>Resource_Already_Exists</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Resource Already Exists</shortDescription>
+        <value>Resource already exists with same email.</value>
+    </labels>
+    <labels>
+        <fullName>Resource_Details</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Resource Details</shortDescription>
+        <value>RESOURCE DETAILS</value>
+    </labels>
+    <labels>
+        <fullName>Search_Company_Label</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Search Company Label</shortDescription>
+        <value>If you are already employed with a company and your company has already signed up.</value>
+    </labels>
+    <labels>
+        <fullName>Search_Company_Value</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Search Company Value</shortDescription>
+        <value>partner_resource_signup</value>
+    </labels>
+    <labels>
+        <fullName>Success</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Success</shortDescription>
+        <value>Success</value>
+    </labels>
+    <labels>
+        <fullName>Successfully_Saved_Message</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Successfully Saved Message</shortDescription>
+        <value>Your Account has been successfully created.</value>
+    </labels>
+    <labels>
+        <fullName>Thankyou_Email</fullName>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>Thankyou_Email</shortDescription>
+        <value>00X2t000000h359</value>
+    </labels>
+    <labels>
+        <fullName>Thankyou_Message</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Thankyou Message</shortDescription>
+        <value>Thanks for submitting the details. You can close this window now.</value>
+    </labels>
+    <labels>
+        <fullName>Thankyou_Text</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Thankyou Text</shortDescription>
+        <value>Thank You</value>
+    </labels>
+    <labels>
+        <fullName>Upload_Complete</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Upload Complete</shortDescription>
+        <value>Upload Complete</value>
+    </labels>
+    <labels>
+        <fullName>Upload_Pdf_Files</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Upload Pdf Files</shortDescription>
+        <value>Please upload PDF files only</value>
+    </labels>
+</CustomLabels>

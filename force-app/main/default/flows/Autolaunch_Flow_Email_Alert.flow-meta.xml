@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Send_Email_to_Existing_Account</name>
+        <label>Send Email to Existing Account</label>
+        <locationX>50</locationX>
+        <locationY>350</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>Get_User_Record.Email</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>Partner Onboarding: Verification of Partner&apos;s resource Details</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>EmailTemplateForExistingPartner</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <actionCalls>
+        <name>Send_Email_To_Non_Existing_Account</name>
+        <label>Send Email To Non Existing Account</label>
+        <locationX>314</locationX>
+        <locationY>350</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>Get_User_Record.Email</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>Partner Onboarding: Verification of Partner Details</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>EmailTemplateForNonExistingPartner</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <apiVersion>58.0</apiVersion>
+    <decisions>
+        <name>Check_Account_is_Exists_or_Not</name>
+        <label>Check Account is Exists or Not</label>
+        <locationX>182</locationX>
+        <locationY>242</locationY>
+        <defaultConnector>
+            <targetReference>Send_Email_To_Non_Existing_Account</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Already_Exists</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>varB_AlreadyExists</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_Email_to_Existing_Account</targetReference>
+            </connector>
+            <label>Already Exists</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>varF_AccountRecordPageLink</name>
+        <dataType>String</dataType>
+        <expression>{!$Label.Account_Record_Page_Base_Url} &amp; {!varT_AccountId} &amp; &apos;/view&apos;</expression>
+    </formulas>
+    <formulas>
+        <name>varF_Formula</name>
+        <dataType>String</dataType>
+        <expression>&apos;Hi&apos; + &apos;,&apos; +
+
+&apos;Hope you are doing well!&apos; +
+ {!varT_AccountName} + &apos;has submited the details Please verify from your side to proceed further.&apos;
+
++&apos;Thanks&apos;+
+&apos;Fexle Service Pvt Ltd&apos;</expression>
+    </formulas>
+    <interviewLabel>Autolaunch Flow : Email Alert {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Autolaunch Flow : Email Alert</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_User_Record</name>
+        <label>Get User Record</label>
+        <locationX>182</locationX>
+        <locationY>134</locationY>
+        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Check_Account_is_Exists_or_Not</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Username</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Label.Account_Team_UserName</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>User</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <runInMode>SystemModeWithoutSharing</runInMode>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_User_Record</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>EmailTemplateForExistingPartner</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Dear {!Get_User_Record.Name},&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;I trust this email finds you well. As we move forward in our partnership journey, we greatly appreciate your commitment to excellence and collaboration. To ensure the accuracy and effectiveness of our partnership, we kindly request your assistance in verifying the resources that have been submitted from our esteemed partner, &lt;a href=&quot;{!varF_AccountRecordPageLink}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;{!varT_AccountName},&lt;/a&gt; as part of our ongoing collaboration.&lt;br/&gt;&lt;br/&gt;Attached to this email, you will find the list of resources that we have received from your end. These resources play a vital role in our joint efforts to deliver outstanding solutions and services to our clients. Your review and verification of these resources will not only help maintain accurate records but also enhance the overall quality of our partnership.&lt;br/&gt;&lt;br/&gt;If you identify any discrepancies or if there are any updates needed, please do not hesitate to bring them to our attention. Your input is invaluable, and we are dedicated to ensuring that our partnership is built on a foundation of accurate and reliable information.&lt;br/&gt;&lt;br/&gt;We look forward to building a strong and successful relationship together.&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;Best Regards&lt;br/&gt;FEXLE Services Pvt Ltd</text>
+    </textTemplates>
+    <textTemplates>
+        <name>EmailTemplateForNonExistingPartner</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Dear {!Get_User_Record.Name},&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;I trust this message finds you in good health. We are currently in the process of onboarding &lt;a href=&quot;{!varF_AccountRecordPageLink}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;{!varT_AccountName}&lt;/a&gt; as a distinguished partner. As an integral part of our comprehensive onboarding protocol, we are required to verify the accuracy of the details submitted by the Partner.&lt;br/&gt;&lt;br/&gt;The precision of our records is of paramount importance to us, ensuring a seamless and productive partnership experience. Kindly take a moment to thoroughly review the partner details furnished by &lt;a href=&quot;{!varF_AccountRecordPageLink}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;{!varT_AccountName}&lt;/a&gt;,validating their accuracy and currency.&lt;br/&gt;&lt;br/&gt;We are enthusiastic about the potential collaboration with &lt;a href=&quot;{!varF_AccountRecordPageLink}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;{!varT_AccountName}&lt;/a&gt; and firmly believe that our collective efforts can yield remarkable results. We sincerely appreciate your collaboration in this significant facet of the onboarding journey.&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;Best Regards,&lt;br/&gt;FEXLE Services Pvt Ltd</text>
+    </textTemplates>
+    <variables>
+        <name>Email_Body</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>varB_AlreadyExists</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>varT_AccountId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>varT_AccountName</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PathAssistant xmlns="http://soap.sforce.com/2006/04/metadata">
+    <active>true</active>
+    <entityName>Account</entityName>
+    <fieldName>Onboarding_Status__c</fieldName>
+    <masterLabel>Onboarding Process Path(Person Account)</masterLabel>
+    <pathAssistantSteps>
+        <fieldNames>Name</fieldNames>
+        <fieldNames>Last_Working_Day__c</fieldNames>
+        <fieldNames>Project_Engagement__c</fieldNames>
+        <fieldNames>Reporting_Manager__c</fieldNames>
+        <fieldNames>Reason_for_Offboarding__c</fieldNames>
+        <picklistValueName>Offboarding Requested</picklistValueName>
+    </pathAssistantSteps>
+    <pathAssistantSteps>
+        <picklistValueName>Onboarding Requested</picklistValueName>
+    </pathAssistantSteps>
+    <recordTypeName>Individual_Partner</recordTypeName>
+</PathAssistant>

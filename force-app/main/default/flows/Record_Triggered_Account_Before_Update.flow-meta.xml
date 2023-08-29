@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>58.0</apiVersion>
+    <assignments>
+        <name>Assign_False_To_Is_Updated_From_UI</name>
+        <label>Assign False To Is Updated From UI</label>
+        <locationX>50</locationX>
+        <locationY>395</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Is_Updated_From_UI__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Assign_Value_Into_Onboarding_Status</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Value_Into_Onboarding_Status</name>
+        <label>Assign Value Into Onboarding Status</label>
+        <locationX>50</locationX>
+        <locationY>503</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Onboarding_Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Approval Requested</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <name>Check_Condition_For_Signed_Document_Status</name>
+        <label>Check Condition For Signed Document Status</label>
+        <locationX>182</locationX>
+        <locationY>287</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>For_Signed_Documents</name>
+            <conditionLogic>1 AND 2 AND 3 AND (4 OR 5) AND (6 OR 7)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record__Prior.Onboarding_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Signature Pending</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.NDA_Document_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Signed</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.MSA_Document_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Signed</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.NDA_Document_Status__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.MSA_Document_Status__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordType.DeveloperName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Partner</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordType.DeveloperName</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Individual_Partner</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_False_To_Is_Updated_From_UI</targetReference>
+            </connector>
+            <label>For Signed Documents</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>varF_AccountLink</name>
+        <dataType>String</dataType>
+        <expression>IF({!$Record.RecordType.DeveloperName} == &apos;Individual_Partner&apos;,LINKTO({!varF_PersonAccountName},  LEFT({!$Api.Partner_Server_URL_260}, FIND(&apos;/services&apos;,{!$Api.Partner_Server_URL_260}))&amp;{!$Record.Id}) , LINKTO({!$Record.Name},  LEFT({!$Api.Partner_Server_URL_260}, FIND(&apos;/services&apos;,{!$Api.Partner_Server_URL_260}))&amp;{!$Record.Id}))</expression>
+    </formulas>
+    <formulas>
+        <name>varF_PersonAccountName</name>
+        <dataType>String</dataType>
+        <expression>{!$Record.FirstName} + &apos; &apos; +{!$Record.LastName}</expression>
+    </formulas>
+    <interviewLabel>Record Triggered : Account - Before Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Record Triggered : Account - Before Update</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Check_Condition_For_Signed_Document_Status</targetReference>
+        </connector>
+        <object>Account</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

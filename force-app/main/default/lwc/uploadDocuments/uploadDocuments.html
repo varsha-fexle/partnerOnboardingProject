@@ -1,0 +1,108 @@
+<template>
+    <div class="first-page">
+        <c-common-toast></c-common-toast>
+        <lightning-spinner alternative-text="Loading..." variant="brand" if:true={isLoaded} style="background-color: rgba(255,255,255,0.5);"></lightning-spinner>
+        <lightning-card class="slds-card top-header">
+            <div class="page-header">{label.READ_CAREFULLY}</div>
+            <div class="page-header-info">{label.CANNOT_BE_UPDATED}  |  {label.MANDATORY_LABEL}  |  {label.UPLOAD_PDF_FILES}</div>
+        </lightning-card>
+        <div class="inner-form-sec">
+            <div class="form-heading">
+                <img src={document}>
+                <span>{label.DOCUMENTS_UPLOAD}</span>
+            </div>
+            <div class="inputMargin">
+                <div class="slds-grid slds-wrap slds-gutters">
+                    <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-m-bottom--large" if:false={isgstuploaded}>
+                        <div class="slds-form-element upload-page">
+                            <lightning-input
+                            type="file"
+                            label="Upload GST Certificate Copy"
+                            accept=".pdf"
+                            onchange={handleFileUploaded}
+                            name="gstPdf"
+                            required="true">
+                            </lightning-input>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-m-bottom--large" if:false={ispanuploaded}>
+                        <div class="slds-form-element upload-page">
+                            <lightning-input
+                            type="file"
+                            label="Upload PAN Copy"
+                            accept=".pdf"
+                            name="panPdf"
+                            onchange={handleFileUploaded}
+                            required="true">
+                           </lightning-input>
+                        </div>   
+                    </div>
+                    <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-m-bottom--large" if:false={iscertuploaded}>
+                        <div class="slds-form-element upload-page">
+                            <lightning-input
+                            type="file"
+                            label="Upload Company Certification Copy"
+                            accept=".pdf"
+                            name ="comCertPdf"
+                            onchange={handleFileUploaded}
+                            required="true">
+                           </lightning-input>  
+                        </div>
+                    </div>
+                    <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 slds-m-bottom--large" if:false={ischequeuploaded}>
+                        <div class="slds-form-element upload-page">
+                            <lightning-input
+                            type="file"
+                            label="Upload Company Cancelled Cheque Copy"
+                            accept=".pdf"
+                            name="canChePdf"
+                            onchange={handleFileUploaded}
+                            required="true">
+                           </lightning-input> 
+                        </div>
+                    </div>
+                </div>
+                <div if:true={isgstuploaded}>
+                    <div class="uploaded-info">
+                        <div class="uploaded-img"><img src={uploadPDF}></div>
+                        <div class="uploaded-text">
+                            <p class="uploaded-headeing">{label.GST_CERTIFICATE_UPLOADED}</p>
+                            <p class="uploaded-error">{label.UPLOAD_COMPLETE}</p>
+                        </div>
+                    </div>
+                </div>
+                <div if:true={ispanuploaded}>
+                    <div class="uploaded-info">
+                        <div class="uploaded-img"><img src={uploadPDF}></div>
+                        <div class="uploaded-text">
+                            <p class="uploaded-headeing">{label.PAN_CARD_UPLOADED}</p>
+                            <p class="uploaded-error">{label.UPLOAD_COMPLETE}</p>
+                        </div>
+                    </div>
+                </div>
+                <div if:true={iscertuploaded}>
+                    <div class="uploaded-info">
+                        <div class="uploaded-img"><img src={uploadPDF}></div>
+                        <div class="uploaded-text">
+                            <p class="uploaded-headeing">{label.COM_CERT_UPLOADED}</p>
+                            <p class="uploaded-error">{label.UPLOAD_COMPLETE}</p>
+                        </div>
+                    </div>
+                </div>
+                <div if:true={ischequeuploaded}>
+                    <div class="uploaded-info">
+                        <div class="uploaded-img"><img src={uploadPDF}></div>
+                        <div class="uploaded-text">
+                            <p class="uploaded-headeing">{label.CANCEL_CHEQUE_UPLOADED}</p>
+                            <p class="uploaded-error">{label.UPLOAD_COMPLETE}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="double-action-btn"> 
+                <lightning-button variant="brand" label="Submit"  class="without-border-btn" onclick={submitDocuments}></lightning-button>
+                <lightning-button variant="brand" label="Back"  class="with-border-btn" onclick={handleClickOnBackButton}></lightning-button>
+            </div>  
+        </div>
+    </div>
+</template>
