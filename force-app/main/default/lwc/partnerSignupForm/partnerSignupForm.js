@@ -216,6 +216,8 @@ export default class PartnerSignupForm extends LightningElement {
             this.accountObj.accountNumber = event.detail.value;
         } else if(event.target.name == 'comIfscCode') {
             this.accountObj.ifscCode = event.detail.value;
+        } else if(event.target.name == 'comShiftCode') {
+            this.accountObj.shiftCode = event.detail.value;
         } else if(event.target.name == 'searchCompanyName') {
             this.searchCompanyName = event.detail.value;
         } else if(event.target.name == 'searchCompanyWebsite'){
@@ -657,6 +659,16 @@ export default class PartnerSignupForm extends LightningElement {
                 ifscCode.setCustomValidity('');
             }
             ifscCode.reportValidity();
+            let shiftCode = this.template.querySelector('.comShiftCode');
+            let shiftCodeVal = shiftCode.value;
+            shiftCodeVal = shiftCodeVal.trim();
+            if(!shiftCodeVal) {
+                shiftCode.setCustomValidity(this.label.REQUIRED_FIELD_ERROR);
+                this.isValidCompany = false;
+            } else {
+                shiftCode.setCustomValidity('');
+            }
+            shiftCode.reportValidity();
             if(panNumber.checkValidity() == false || gstNumber.checkValidity() == false) {
                 this.isValidCompany = false;
             }

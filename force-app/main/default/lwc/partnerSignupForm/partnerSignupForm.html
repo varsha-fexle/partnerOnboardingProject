@@ -159,7 +159,7 @@
                             <div class="slds-form-element form-field">
                                 <lightning-input label="IFSC Code" onchange={handleInputChange} class="ifscCode" required="true" name="accIfscCode" value={accountObj.ifscCode}></lightning-input>
                             </div>
-                        </div> 
+                        </div>
                     </div>  
                 </div>
             </div>
@@ -299,6 +299,11 @@
                                 <lightning-input label="IFSC Code" onchange={handleInputChange} class="comIfscCode" required="true" name="comIfscCode" value={accountObj.ifscCode}></lightning-input>
                             </div>
                         </div> 
+                        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 ">
+                            <div class="slds-form-element form-field">
+                                <lightning-input label="Shift Code" onchange={handleInputChange} class="comShiftCode" required="true" name="comShiftCode" value={accountObj.shiftCode}></lightning-input>
+                            </div>
+                        </div> 
                     </div>
                 </div> 
             </div>
@@ -383,4 +388,69 @@
                 flow-input-variables={inputVariables}>
         </lightning-flow>
     </template>
+    <lightning-card>
+        <div class="section">
+            <div class="section-heading">
+                <div class="heading-img"><img src={resource}></div>
+                <span>ADVISORY RESOURCE DETAILS</span>
+            </div>
+            <div class="inputMargin">
+                <div class="slds-grid slds-wrap slds-gutters">
+                    <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 ">
+                        <div class="slds-form-element form-field">
+                            <lightning-input label="First Name" onchange={handleInputChange}  name="conFirstName" class="conFirstName" required="true" value={contactObj.firstName}></lightning-input>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 ">
+                        <div class="slds-form-element form-field">
+                            <lightning-input label="Last Name" onchange={handleInputChange} name="conLastName" class="conLastName" required="true" value={contactObj.lastName}></lightning-input>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 ">
+                        <div class="slds-form-element form-field">
+                            <lightning-combobox
+                                name="conGender"
+                                label="Gender"
+                                class="conGender"
+                                value={contactObj.gender}
+                                placeholder="Select Gender"
+                                options={genderOptions}
+                                onchange={handleInputChange}
+                                required="true"></lightning-combobox>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 ">
+                        <div class="slds-form-element form-field">
+                            <lightning-input label="Email Address" type="email" onchange={handleInputChange} class="conEmail" required="true" name="conEmail" value={contactObj.email}></lightning-input>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 ">
+                        <div class="slds-form-element form-field">
+                            <lightning-input label="Mobile Number" type="tel" onchange={handleInputChange} class="conMobNum" required="true" name="conMobNum" pattern="^[0-9]{10}$" value={contactObj.mobileNumber} message-when-pattern-mismatch="Please enter valid Mobile Number"></lightning-input>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 ">
+                        <div class="slds-form-element form-field">
+                            <lightning-input label="Aadhar Card Number"  name="conAadhar" onchange={handleInputChange} class="conAadhar" required="true" pattern="^[0-9 ]{14}$" value={contactObj.aadharCard} message-when-pattern-mismatch="Invalid Aadhar Card Number.It should be in the format of xxxx xxxx xxxx"></lightning-input>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 ">
+                        <div class="slds-form-element form-field">
+                            <lightning-input label="PAN Card Number" name="conPancard" onchange={handleInputChange} class="conPancard" required="true" pattern="^[A-Z]{5}[0-9]{4}[A-Z]{1}$" value={contactObj.panCardNumber} message-when-pattern-mismatch="Invalid PAN Card Number. It should be in the format of AAAAA1234A"></lightning-input>
+                        </div>
+                    </div>
+                    <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 ">
+                        <div class="slds-form-element form-field">
+                            <lightning-input label="Designation" name="conPancard" onchange={handleInputChange} class="conPancard" required="true" value={contactObj.panCardNumber}></lightning-input>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="button-inline"> 
+            <lightning-button variant="brand" label="Back" onclick={handleBackOfContactInfoScreen} class="with-border-btn"></lightning-button>
+            <lightning-button variant="brand" label="Add New Resource"  class="without-border-btn" onclick={saveContactInformation}></lightning-button>
+            <lightning-button variant="brand" label="Finish"  class="with-border-btn" onclick={saveContactInformation} name="finish"></lightning-button>
+        </div>
+    </lightning-card>
 </template>
