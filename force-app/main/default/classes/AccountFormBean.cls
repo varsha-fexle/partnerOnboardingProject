@@ -51,21 +51,5 @@ public class AccountFormBean {
     public String aadharCard {get; set;}
     @AuraEnabled
     public String panCardNumber {get; set;}
-    
-    
-    //Documents
-    @AuraEnabled
-    public List<Document> documents;
-    
-    public class Document {
-        @AuraEnabled
-        public String documentName;
-        @AuraEnabled
-        public String base64Data;
-        @AuraEnabled
-        public String documentId;
-        @AuraEnabled
-        public String contentDocumentId;
-    } 
 
 }

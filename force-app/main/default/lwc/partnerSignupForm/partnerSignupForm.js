@@ -20,7 +20,6 @@ export default class PartnerSignupForm extends LightningElement {
     thankyou = PartnerSignup_staticResource + '/PartnerSignup_staticResource/Images/thankyou.png';
 
     @track options = [];
-    @track showDocuments = false;
     @track personalInfo = false;
     @track initialScreen = true;
     @track selectedPartnerType;
@@ -32,7 +31,6 @@ export default class PartnerSignupForm extends LightningElement {
     @track isPersonalInfoCompleted = true;
     @track accountNameTrimed;
     @track accountWebsiteTrimed;
-    @track accountId;
     @track isValidContact = true;
     @track companyInfo = false;
     @track isValidCompany = true;
@@ -40,19 +38,16 @@ export default class PartnerSignupForm extends LightningElement {
     @track partnerId='';
     @track contactInfo =false;
     @track isValidPartnerContact = true;
-    @api contactId;
     @track instruction = true;
     @api isLoaded = false;
     @track searchCompanyName;
     @track searchCompanyWebsite;
     @track thankyouScreen = false;
     @track renderFlow = false;
-    @track primaryContactInfo = false;
     @track isGstUploaded=false;
     @track isPanUploaded=false;
     @track isCertUploaded = false;
     @track isChequeUploaded = false;
-    @track isAccountInserted = false;
     @track genderOptions = [];
     @track accountExists = false;
     @track label = labels;
@@ -156,21 +151,6 @@ export default class PartnerSignupForm extends LightningElement {
             this.accountObj.accountNumber = event.detail.value;
         } else if(event.target.name == 'accIfscCode') {
             this.accountObj.ifscCode = event.detail.value;
-        } else if(event.target.name == 'comConFirstName') {
-            this.contactObj.firstName = event.detail.value;
-        } else if(event.target.name == 'comConLastName') {
-            this.contactObj.lastName = event.detail.value;
-        } else if(event.target.name == 'comConEmail') {
-            this.contactObj.email = event.detail.value;
-        } else if(event.target.name == 'comConMobNum') {
-            this.contactObj.mobileNumber = event.detail.value;
-        }  else if(event.target.name == 'comConAadhar') {
-            this.contactObj.aadharCard = event.detail.value;
-            if(this.contactObj.aadharCard.length == 4 || this.contactObj.aadharCard.length == 9) {
-                this.contactObj.aadharCard = this.contactObj.aadharCard + ' ';
-            }
-        } else if(event.target.name == 'comConPancard') {
-            this.contactObj.panCardNumber = event.detail.value;
         } else if(event.target.name == 'conFirstName') {
             this.contactObj.firstName = event.detail.value;
         } else if(event.target.name == 'conEmail') {
@@ -216,8 +196,6 @@ export default class PartnerSignupForm extends LightningElement {
             this.accountObj.accountNumber = event.detail.value;
         } else if(event.target.name == 'comIfscCode') {
             this.accountObj.ifscCode = event.detail.value;
-        } else if(event.target.name == 'comShiftCode') {
-            this.accountObj.shiftCode = event.detail.value;
         } else if(event.target.name == 'searchCompanyName') {
             this.searchCompanyName = event.detail.value;
         } else if(event.target.name == 'searchCompanyWebsite'){
@@ -659,16 +637,6 @@ export default class PartnerSignupForm extends LightningElement {
                 ifscCode.setCustomValidity('');
             }
             ifscCode.reportValidity();
-            let shiftCode = this.template.querySelector('.comShiftCode');
-            let shiftCodeVal = shiftCode.value;
-            shiftCodeVal = shiftCodeVal.trim();
-            if(!shiftCodeVal) {
-                shiftCode.setCustomValidity(this.label.REQUIRED_FIELD_ERROR);
-                this.isValidCompany = false;
-            } else {
-                shiftCode.setCustomValidity('');
-            }
-            shiftCode.reportValidity();
             if(panNumber.checkValidity() == false || gstNumber.checkValidity() == false) {
                 this.isValidCompany = false;
             }
@@ -863,9 +831,8 @@ export default class PartnerSignupForm extends LightningElement {
                                 this.thankyouScreen = true;
                                 this.renderFlow = true;
                             } else {
-                                this.contactId = result;
                                 this.contactObj = {};
-                                this.isPrimaryContact = false;
+                                this.contactObj.isPrimaryContact = false;
                             }
                             this.template.querySelector('c-common-toast').showToast('success','<strong>'+this.label.CONTACT_IS_CREATED+'<strong/>','utility:success',2000);
                         } else { 
