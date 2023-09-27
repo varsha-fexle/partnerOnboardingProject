@@ -173,7 +173,6 @@ public without sharing class PartnerSignupFormController {
                 partnerAccount.GST_Number__c = accountInfo.gstNumber;
                 partnerAccount.PAN_Number__c = accountInfo.companyPANNumber;
                 partnerAccount.Type = PartnerSignupFormConstants.Type;
-                partnerAccount.Shift_Code__c = accountInfo.shiftCode;
                 partnerAccount.RecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get(PartnerSignupFormConstants.TYPE).getRecordTypeId();
                 
                

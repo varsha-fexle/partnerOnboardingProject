@@ -37,8 +37,6 @@ public class AccountFormBean {
     public String accountNumber {get; set;}
     @AuraEnabled
     public String ifscCode {get; set;}
-    @AuraEnabled
-    public String shiftCode {get; set;}
 
     //Personal Information
     @AuraEnabled
