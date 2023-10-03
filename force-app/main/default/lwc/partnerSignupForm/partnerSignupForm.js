@@ -455,11 +455,14 @@ export default class PartnerSignupForm extends LightningElement {
                 }).then(result=>{
                     this.isLoaded = false;
                     if(result != null && result != undefined) {
-                        this.accountObj = result;
-                        this.partnerId = result.accountId;
-                        this.accountObj.accountId = result.accountId;
-                        this.searchScreen = false;
-                        this.contactInfo = true;
+                        if(result.length == this.label.REC_ID_LEN) {
+                            this.partnerId = result.accountId;
+                            this.accountObj.accountId = result.accountId;
+                            this.searchScreen = false;
+                            this.contactInfo = true;
+                        } else {
+                            this.template.querySelector('c-common-toast').showToast('error','<strong>'+result+'<strong/>','utility:error',2000);
+                        }
                     }
                     else {
                         this.template.querySelector('c-common-toast').showToast('error','<strong>'+this.label.NOT_FOUND+'<strong/>','utility:warning',5000);   
@@ -636,36 +639,35 @@ export default class PartnerSignupForm extends LightningElement {
                         accountInfoJSON : JSON.stringify(this.accountObj)
                     }).then(result=>{
                         if(result != null) {
+                            this.isLoaded = false;
                             if(result.length == this.label.REC_ID_LEN) {
-                                    this.isLoaded = false;
-                                    if(this.accountObj.accountId != null && this.accountObj.accountId != undefined && this.accountObj.accountId != '') {
-                                        this.template.querySelector('c-common-toast').showToast('success','<strong>'+this.label.ACCOUNT_IS_UPDATED+'<strong/>','utility:success',1000);
-                                    }
-                                    else{
-                                        this.template.querySelector('c-common-toast').showToast('success','<strong>'+this.label.ACCOUNT_IS_CREATED+'<strong/>','utility:success',1000);    
-                                    }
-                                    this.partnerId = result;
-                                    this.accountObj.accountId = result;
-                                    this.disabled = true;
-                                    this.copyAccountObj = {...this.copyAccountObj,...this.accountObj};
-                                    this.companyInfo = false;
-                                    this.instruction = false;
-                                    this.companyDocuments = true;
+                                if(this.accountObj.accountId != null && this.accountObj.accountId != undefined && this.accountObj.accountId != '') {
+                                    this.template.querySelector('c-common-toast').showToast('success','<strong>'+this.label.ACCOUNT_IS_UPDATED+'<strong/>','utility:success',1000);
                                 }
-                                else {
-                                    this.isLoaded = false;
-                                    this.template.querySelector('c-common-toast').showToast('error','<strong>'+result+'<strong/>','utility:error',2000);
+                                else{
+                                    this.template.querySelector('c-common-toast').showToast('success','<strong>'+this.label.ACCOUNT_IS_CREATED+'<strong/>','utility:success',1000);    
                                 }
+                                this.partnerId = result;
+                                this.accountObj.accountId = result;
+                                this.disabled = true;
+                                this.copyAccountObj = {...this.copyAccountObj,...this.accountObj};
+                                this.companyInfo = false;
+                                this.instruction = false;
+                                this.companyDocuments = true;
                             }
                             else {
-                                this.isLoaded = false;
-                                this.template.querySelector('c-common-toast').showToast('error','<strong>Error<strong/>','utility:error',2000);
+                                this.template.querySelector('c-common-toast').showToast('error','<strong>'+result+'<strong/>','utility:error',2000);
                             }
-                        
-                        }).catch((error) => {
+                        }
+                        else {
                             this.isLoaded = false;
-                            this.template.querySelector('c-common-toast').showToast('error','<strong>'+error+'<strong/>','utility:error',2000);
-                        });
+                            this.template.querySelector('c-common-toast').showToast('error','<strong>Error<strong/>','utility:error',2000);
+                        }
+                        
+                    }).catch((error) => {
+                        this.isLoaded = false;
+                        this.template.querySelector('c-common-toast').showToast('error','<strong>'+error+'<strong/>','utility:error',2000);
+                    });
                 }
                 else {
                     this.isLoaded = false;

@@ -13,6 +13,21 @@ public class PartnerSignupExceptionHandlerTest {
     @isTest
     static void testLogException_Success() {
         // Test data
+        User currentUser = [SELECT Id FROM User WHERE Id = :UserInfo.getUserId() LIMIT 1];
+        PermissionSet permissionSet = [SELECT Id FROM PermissionSet WHERE Name = 'Partner_Onboarding' LIMIT 1];
+
+        PermissionSetAssignment assignmentRecord;
+        List<PermissionSetAssignment> assignmentRecords = [SELECT Id FROM PermissionSetAssignment WHERE AssigneeId = :currentUser.Id AND PermissionSetId = :permissionSet.Id LIMIT 1];
+        
+        if (assignmentRecords.size() > 0) {
+            assignmentRecord = assignmentRecords[0];
+        } else {
+            PermissionSetAssignment perSetAssign = new PermissionSetAssignment();
+            perSetAssign.AssigneeId = currentUser.Id;
+            perSetAssign.PermissionSetId = permissionSet.Id;
+            insert perSetAssign;
+            assignmentRecord = perSetAssign; // Assign the newly inserted record to assignmentRecord
+        }
         String details = 'Sample exception details';
         Integer lineNumber = 42;
         String methodName = 'testMethod';

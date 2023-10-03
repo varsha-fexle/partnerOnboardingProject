@@ -1,7 +1,7 @@
 /**
-  * Created By       : Varsha Adwani
-  * Last Modified On : 21 March 2023
-  * Purpose          : To create different Types of account and for uploading file
+  * Created By       :  Varsha Adwani
+  * Created Date     :  21 March 2023
+  * Purpose          :  To create different Types of account and for uploading file
 **/
 public without sharing class PartnerSignupFormController {
     
@@ -64,54 +64,28 @@ public without sharing class PartnerSignupFormController {
      * Description :- This method is used to fetch 'company accounts' and it returns accountId 
      */
     @AuraEnabled
-    public static AccountFormBean getAccount(String accountName, String accountWebsite) {
-        System.debug(accountName);
-        try{
+    public static String getAccount(String accountName, String accountWebsite) {
 
+        try {
             Id RecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get(PartnerSignupFormConstants.TYPE).getRecordTypeId();
-            System.debug(RecordTypeId);
+        
             String queryString = 'SELECT Id, Name, Website, BillingStreet, BillingCity, BillingState, BillingPostalCode, BillingCountry, GST_Number__c, PAN_Number__c, Bank_Account_Holder_Name__c, Bank_Account_Number__c, Bank_Branch_Address__c, Bank_IFSC_Code__c, 	Bank_Name__c FROM Account WHERE RecordTypeId =:RecordTypeId AND';
 
             if(accountName != null) {
-
                 queryString += ' Name =:accountName AND';
             }
 
             if(accountWebsite != null) {
-
                 String WebsiteName = '%' + String.escapeSingleQuotes(accountWebsite) + '%';
                 queryString += ' Website LIKE :WebsiteName AND';
             }
 
             queryString = queryString.substring(0,queryString.length()-4);
             queryString += ' LIMIT 1';
-            System.debug(queryString);
-            List<Account> resultList = Database.query(queryString);
-            System.debug('abc '+resultList[0].Id);
-            AccountFormBean accountDetails = new AccountFormBean();
+            Account account = Database.query(queryString);
             
-            if(!resultList.isEmpty()){
-            
-                Account account = resultList[0];
-                accountDetails.accountId = account.Id;
-                accountDetails.accountName = resultList.size() > 0 ? resultList[0].Name : '';
-                accountDetails.website = resultList.size() > 0 ? resultList[0].Website : '';
-                accountDetails.accountBillingStreet = resultList.size() > 0 ? resultList[0].BillingStreet : '';
-                accountDetails.accountBillingCity = resultList.size() > 0 ? resultList[0].BillingCity : '';
-                accountDetails.accountBillingCountry = resultList.size() > 0 ? resultList[0].BillingCountry : '';
-                accountDetails.accountBillingState = resultList.size() > 0 ? resultList[0].BillingState : '';
-                accountDetails.accountBillingPostalCode = resultList.size() > 0 ? resultList[0].BillingPostalCode : '';
-                accountDetails.accountHolderName = resultList.size() > 0 ? resultList[0].Bank_Account_Holder_Name__c : '';
-                accountDetails.bankName = resultList.size() > 0 ? resultList[0].Bank_Name__c : '';
-                accountDetails.brachAddress = resultList.size() > 0 ? resultList[0].Bank_Branch_Address__c : '';
-                accountDetails.accountNumber = resultList.size() > 0 ? resultList[0].Bank_Account_Number__c : '';
-                accountDetails.ifscCode = resultList.size() > 0 ? resultList[0].Bank_IFSC_Code__c : '';
-                accountDetails.gstNumber = resultList.size() > 0 ? resultList[0].GST_Number__c : '';
-                accountDetails.companyPANNumber = resultList.size() > 0 ? resultList[0].PAN_Number__c : null;
-                
-                System.debug(accountDetails);
-                return accountDetails;
-
+            if(account != null){
+                return account.Id;
             } else {
                 return null;
             }    
@@ -225,46 +199,6 @@ public without sharing class PartnerSignupFormController {
         }
         return null;
     } 
-  
-    /*
-     * Description :- This method is used to check missing attachments in a particular account
-     */
-    @AuraEnabled
-    public static List<String> checkMissingDocuments(String accountId) {
-        List<Attachment> attachmentList = [SELECT Id, Name FROM Attachment WHERE parentId =:accountId];
-        List<String> missingFiles = new List<String>();
-        Boolean isGstExists = false;
-        Boolean isPanExists = false;
-        Boolean isCanChequeExists = false;
-        Boolean isComCertExists = false;
-        for(Attachment attach : attachmentList) {
-            if(attach.Name == PartnerSignupFormConstants.GST_TITLE) {
-                isGstExists = true;
-            }
-            else if(attach.Name == PartnerSignupFormConstants.PAN_TITLE) {
-                isPanExists = true;
-            }
-            else if(attach.Name == PartnerSignupFormConstants.CAN_CHEQUE_TITLE) {
-                isCanChequeExists = true;
-            }
-            else if(attach.Name == PartnerSignupFormConstants.COMP_CERT_TITLE) {
-                isComCertExists = true;
-            }
-        }
-        if(isGstExists == false) {
-            missingFiles.add(PartnerSignupFormConstants.GST_TITLE);
-        }
-        if(isPanExists == false) {
-            missingFiles.add(PartnerSignupFormConstants.PAN_TITLE);
-        }
-        if(isCanChequeExists == false) {
-            missingFiles.add(PartnerSignupFormConstants.CAN_CHEQUE_TITLE);
-        } 
-        if(isComCertExists == false) {
-            missingFiles.add(PartnerSignupFormConstants.COMP_CERT_TITLE);
-        }
-        return missingFiles;
-    }
 
     /*
      * Description :- This method is used to fetch contact by Email and accountId
