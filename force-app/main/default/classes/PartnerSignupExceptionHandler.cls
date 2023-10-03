@@ -4,7 +4,7 @@ public class PartnerSignupExceptionHandler {
     public static void logException(String details, Integer lineNumber, String methodName, String className) {
         try {
             // Create a new Log_Exception__c record
-            Partner_Onboarding_Exception__c excep = new Partner_Onboarding_Exception__c();
+            Custom_Exception__c excep = new Custom_Exception__c();
             
             // Validate and sanitize input details
             excep.Exception_Details__c = details;

@@ -152,14 +152,14 @@
     <enableSearch>true</enableSearch>
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
-    <label>Partner Onboarding Exception</label>
+    <label>Custom Exception</label>
     <nameField>
         <displayFormat>Ex-{0000}</displayFormat>
-        <label>Partner Onboarding Exception Name</label>
+        <label>Custom Exception Name</label>
         <trackHistory>false</trackHistory>
         <type>AutoNumber</type>
     </nameField>
-    <pluralLabel>Partner Onboarding Exceptions</pluralLabel>
+    <pluralLabel>Custom Exceptions</pluralLabel>
     <searchLayouts></searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>

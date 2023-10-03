@@ -8,8 +8,6 @@ public class ContactFormBean {
     @AuraEnabled
     public String email {get; set;}
     @AuraEnabled
-    public String gender {get; set;}
-    @AuraEnabled
     public String mobileNumber {get; set;}
     @AuraEnabled
     public String aadharCard {get; set;}

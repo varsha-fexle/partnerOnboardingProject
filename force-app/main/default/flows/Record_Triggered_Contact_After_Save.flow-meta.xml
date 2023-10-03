@@ -95,7 +95,7 @@
                 <elementReference>$Flow.FaultMessage</elementReference>
             </value>
         </inputAssignments>
-        <object>Partner_Onboarding_Exception__c</object>
+        <object>Custom_Exception__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <recordLookups>

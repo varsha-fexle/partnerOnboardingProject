@@ -11,8 +11,6 @@ public class AccountFormBean {
     public String primaryContactId{get;set;}
     @AuraEnabled
     public String accountId{get;set;}
-    @AuraEnabled
-    public String gender {get; set;}
 
     //Billing Address
     @AuraEnabled

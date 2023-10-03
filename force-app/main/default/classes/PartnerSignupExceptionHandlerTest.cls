@@ -24,10 +24,10 @@ public class PartnerSignupExceptionHandlerTest {
         Test.stopTest();
         
         // Verify the inserted record
-        List<Partner_Onboarding_Exception__c> insertedRecords = [SELECT Id, Exception_Details__c, Line_Number__c, Method_Name__c, Class_Name__c FROM Partner_Onboarding_Exception__c];
+        List<Custom_Exception__c> insertedRecords = [SELECT Id, Exception_Details__c, Line_Number__c, Method_Name__c, Class_Name__c FROM Custom_Exception__c];
         System.assertEquals(1, insertedRecords.size());
         
-        Partner_Onboarding_Exception__c insertedRecord = insertedRecords[0];
+        Custom_Exception__c insertedRecord = insertedRecords[0];
         System.assertEquals(details, insertedRecord.Exception_Details__c);
         System.assertEquals(lineNumber, insertedRecord.Line_Number__c);
         System.assertEquals(methodName, insertedRecord.Method_Name__c);

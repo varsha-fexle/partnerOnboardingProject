@@ -1,13 +1,13 @@
-public class ZohoWebhookWrapper {
+public class ZohoSignWebhookWrapper {
    
     public Requests requests { get; set; }
-    public Notifications notifications { get; set; }
+    //public Notifications notifications { get; set; }
 
     public class Requests {
-        public String request_status { get; set; }
-        public String owner_email { get; set; }
+        /*public String request_status { get; set; }
+        public String owner_email { get; set; }*/
         public List<DocumentIds> document_ids { get; set; }
-        public Boolean self_sign { get; set; }
+        /*public Boolean self_sign { get; set; }
         public String owner_id { get; set; }
         public String request_name { get; set; }
         public Long modified_time { get; set; }
@@ -20,19 +20,19 @@ public class ZohoWebhookWrapper {
         public String request_id { get; set; }
         public String request_type_id { get; set; }
         public String zsdocumentid { get; set; }
-        public List<Actions> actions { get; set; }
+        public List<Actions> actions { get; set; }*/
     }
     
     public class DocumentIds {
         public String document_name { get; set; }
-        public Integer document_size { get; set; }
+        /*public Integer document_size { get; set; }
         public String document_order { get; set; }
         public Boolean is_editable { get; set; }
-        public Integer total_pages { get; set; }
+        public Integer total_pages { get; set; }*/
         public String document_id { get; set; }
     }
     
-    public class Actions {
+    /*public class Actions {
         public Boolean verify_recipient { get; set; }
         public String action_type { get; set; }
         public String action_id { get; set; }
@@ -45,9 +45,9 @@ public class ZohoWebhookWrapper {
         public String recipient_phonenumber { get; set; }
         public String recipient_countrycode { get; set; }
         public String action_status { get; set; }
-    }
+    }*/
     
-    public class Notifications {
+    /*public class Notifications {
         public String performed_by_email { get; set; }
         public Long performed_at { get; set; }
         public String country { get; set; }
@@ -57,7 +57,7 @@ public class ZohoWebhookWrapper {
         public String performed_by_name { get; set; }
         public String ip_address { get; set; }
         public Decimal longitude { get; set; }
-    }
+    }*/
 
 
 }

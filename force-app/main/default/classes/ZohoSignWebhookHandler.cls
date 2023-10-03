@@ -1,5 +1,5 @@
-@RestResource(urlMapping='/api/Webhooks/ZohoWebhookHandler/*')
-global without sharing class ZohoWebhookHandler {
+@RestResource(urlMapping='/api/Webhooks/ZohoSignWebhookHandler/*')
+global without sharing class ZohoSignWebhookHandler {
     
     // Method to handle POST request
     @HttpPost
@@ -10,7 +10,7 @@ global without sharing class ZohoWebhookHandler {
         // Get the request body data
         String requestBody = RestContext.request.requestBody.toString();
 
-        ZohoWebhookWrapper wrapper = (ZohoWebhookWrapper)JSON.deserialize(requestBody, ZohoWebhookWrapper.class);
+        ZohoSignWebhookWrapper wrapper = (ZohoSignWebhookWrapper)JSON.deserialize(requestBody, ZohoSignWebhookWrapper.class);
         
         if(wrapper != NULL) {
           

@@ -118,8 +118,6 @@ export default class PartnerSignupForm extends LightningElement {
             this.accountObj.firstName = event.detail.value;
         } else if(event.target.name == 'accLastname') {
             this.accountObj.lastName = event.detail.value;
-        } else if(event.target.name == 'accGender') {
-            this.accountObj.gender = event.detail.value;
         } else if(event.target.name == 'accEmail') {
             this.accountObj.email = event.detail.value;
         } else if(event.target.name == 'accMobNum') {
@@ -159,8 +157,6 @@ export default class PartnerSignupForm extends LightningElement {
             this.contactObj.mobileNumber = event.detail.value;
         } else if(event.target.name == 'conLastName') {
             this.contactObj.lastName = event.detail.value;
-        } else if(event.target.name == 'conGender') {
-            this.contactObj.gender = event.detail.value;
         } else if(event.target.name == 'conAadhar') {
             this.contactObj.aadharCard = event.detail.value;
             if(this.contactObj.aadharCard.length == 4 || this.contactObj.aadharCard.length == 9) {
@@ -239,15 +235,6 @@ export default class PartnerSignupForm extends LightningElement {
            mobileNumber.setCustomValidity('');
         }
         mobileNumber.reportValidity();
-        let gender = this.template.querySelector('.accGender');
-        let genderVal = gender.value;
-        if(!genderVal) {
-           gender.setCustomValidity(this.label.REQUIRED_FIELD_ERROR);
-           this.isPersonalInfoCompleted = false;
-        } else {
-           gender.setCustomValidity('');
-        }
-        gender.reportValidity();
         let email = this.template.querySelector('.email');
         let emailVal = email.value;
         const pat = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -473,7 +460,6 @@ export default class PartnerSignupForm extends LightningElement {
                         this.accountObj.accountId = result.accountId;
                         this.searchScreen = false;
                         this.contactInfo = true;
-                        this.contactObj.isPrimaryContact = true;
                     }
                     else {
                         this.template.querySelector('c-common-toast').showToast('error','<strong>'+this.label.NOT_FOUND+'<strong/>','utility:warning',5000);   
@@ -714,17 +700,6 @@ export default class PartnerSignupForm extends LightningElement {
                 }
             ] 
         let buttonName = event.target.name;
-        if(buttonName == this.label.FINISH_BUTTON_NAME) {
-           if(this.contactObj.gender == undefined && this.contactObj.firstName == undefined && this.contactObj.lastName == undefined && this.contactObj.aadharCard == undefined && this.contactObj.panCardNumber == undefined && this.contactObj.email == undefined) {
-                this.partnerId = this.accountObj.accountId;
-                this.contactInfo = false;
-                this.instruction = false;
-                this.thankyouScreen = true;
-                this.renderFlow = true;
-           } else {
-               this.thankyouScreen = false;
-           }
-        }
         this.contactObj.accountId = this.partnerId;
         this.isValidPartnerContact = true;
         let firstName = this.template.querySelector('.conFirstName');
@@ -757,15 +732,6 @@ export default class PartnerSignupForm extends LightningElement {
            mobileNumber.setCustomValidity('');
         }
         mobileNumber.reportValidity();
-        let gender = this.template.querySelector('.conGender');
-        let genderVal = gender.value;
-        if(!genderVal){
-           gender.setCustomValidity(this.label.REQUIRED_FIELD_ERROR);
-           this.isValidPartnerContact = false;
-        } else {
-           gender.setCustomValidity('');
-        }
-        gender.reportValidity();
         let email = this.template.querySelector('.conEmail');
         let emailVal = email.value;
         const pat = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

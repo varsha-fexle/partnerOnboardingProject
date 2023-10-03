@@ -57,22 +57,8 @@
                         </div>
                         <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 ">
                             <div class="slds-form-element form-field">
-                                <lightning-combobox
-                                    name="accGender"
-                                    label="Gender"
-                                    class="accGender"
-                                    value={accountObj.gender}
-                                    placeholder="Select Gender"
-                                    options={genderOptions}
-                                    onchange={handleInputChange}
-                                    required="true"></lightning-combobox>
-                            </div>
-                        </div>
-                        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 ">
-                            <div class="slds-form-element form-field">
                                 <lightning-input label="Email Address" type="text" onchange={handleInputChange} class="email" required="true" name="accEmail" value={accountObj.email}></lightning-input>
-
-                        </div>
+                            </div>
                         </div>
                         <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 ">
                             <div class="slds-form-element form-field">
@@ -326,19 +312,6 @@
                         <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 ">
                             <div class="slds-form-element form-field">
                                 <lightning-input label="Last Name" onchange={handleInputChange} name="conLastName" class="conLastName" required="true" value={contactObj.lastName}></lightning-input>
-                            </div>
-                        </div>
-                        <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 ">
-                            <div class="slds-form-element form-field">
-                                <lightning-combobox
-                                    name="conGender"
-                                    label="Gender"
-                                    class="conGender"
-                                    value={contactObj.gender}
-                                    placeholder="Select Gender"
-                                    options={genderOptions}
-                                    onchange={handleInputChange}
-                                    required="true"></lightning-combobox>
                             </div>
                         </div>
                         <div class="slds-col slds-small-size_12-of-12 slds-medium-size_6-of-12 ">

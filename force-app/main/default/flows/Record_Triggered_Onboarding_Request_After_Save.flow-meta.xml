@@ -40,8 +40,8 @@
     </actionCalls>
     <apiVersion>58.0</apiVersion>
     <environments>Default</environments>
-    <interviewLabel>Record Triggered : Partner Onboarding Process - After Save {!$Flow.CurrentDateTime}</interviewLabel>
-    <label>Record Triggered : Partner Onboarding Process - After Save</label>
+    <interviewLabel>Record Triggered : Onboarding Request - After Save {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Record Triggered : Onboarding Request - After Save</label>
     <processMetadataValues>
         <name>BuilderType</name>
         <value>
@@ -72,7 +72,7 @@
                 <elementReference>$Flow.FaultMessage</elementReference>
             </value>
         </inputAssignments>
-        <object>Partner_Onboarding_Exception__c</object>
+        <object>Custom_Exception__c</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <start>
@@ -89,7 +89,7 @@
                 <booleanValue>false</booleanValue>
             </value>
         </filters>
-        <object>Partner_Onboarding_Process__c</object>
+        <object>Onboarding_Request__c</object>
         <recordTriggerType>Create</recordTriggerType>
         <triggerType>RecordAfterSave</triggerType>
     </start>
@@ -97,6 +97,6 @@
     <textTemplates>
         <name>PartnerRegistrationEmailTemplate</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>&lt;p&gt;Dear {!$Record.Name},&lt;br/&gt;&lt;br/&gt;&lt;br/&gt; We are thrilled to welcome you to our partner network and are excited to embark on this journey together. Your collaboration with us is an essential step towards mutual success, and we&apos;re confident that your expertise will greatly contribute to our shared goals.&lt;br/&gt;&lt;br/&gt; To begin the onboarding process, please click on the following URL:&lt;br/&gt;&lt;a href=&quot;https://fexleservices--dev2.sandbox.my.salesforce-sites.com/partnerOnboarding&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;https://fexleservices--dev2.sandbox.my.salesforce-sites.com/partnerOnboarding&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;This URL will direct you to our dedicated partner onboarding portal, where you&apos;ll find a forms to fill all the necessary details to get started. Our comprehensive onboarding process is designed to ensure a smooth integration into our ecosystem, enabling you to quickly start adding value to our partnership.&lt;br/&gt;&lt;br/&gt;Should you encounter any issues during the onboarding process or if you have any questions, please don&apos;t hesitate to reach out to our HR team at hr@fexle.com. We&apos;re here to assist you every step of the way. &lt;br/&gt;&lt;br/&gt;Once again, welcome to our partner family. We&apos;re looking forward to a prosperous collaboration and achieving great things together. &lt;br/&gt;&lt;br/&gt;&lt;br/&gt;Best regards,&lt;br/&gt;FEXLE Services Pvt Ltd&lt;/p&gt;</text>
+        <text>&lt;p&gt;Dear {!$Record.Name},&lt;br/&gt;&lt;br/&gt;&lt;br/&gt; We are thrilled to welcome you to our partner network and are excited to embark on this journey together. Your collaboration with us is an essential step towards mutual success, and we&apos;re confident that your expertise will greatly contribute to our shared goals.&lt;br/&gt;&lt;br/&gt; To begin the onboarding process, please click on the following URL:&lt;br/&gt;&lt;a href=&quot;https://fexleservices--dev5.sandbox.my.salesforce-sites.com/partnerOnboarding&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;https://fexleservices--dev5.sandbox.my.salesforce-sites.com/partnerOnboarding&lt;/a&gt;&lt;br/&gt;&lt;br/&gt;This URL will direct you to our dedicated partner onboarding portal, where you&apos;ll find a forms to fill all the necessary details to get started. Our comprehensive onboarding process is designed to ensure a smooth integration into our ecosystem, enabling you to quickly start adding value to our partnership.&lt;br/&gt;&lt;br/&gt;Should you encounter any issues during the onboarding process or if you have any questions, please don&apos;t hesitate to reach out to our HR team at hr@fexle.com. We&apos;re here to assist you every step of the way. &lt;br/&gt;&lt;br/&gt;Once again, welcome to our partner family. We&apos;re looking forward to a prosperous collaboration and achieving great things together. &lt;br/&gt;&lt;br/&gt;&lt;br/&gt;Best regards,&lt;br/&gt;FEXLE Services Pvt Ltd&lt;/p&gt;</text>
     </textTemplates>
 </Flow>

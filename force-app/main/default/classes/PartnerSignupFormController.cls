@@ -25,10 +25,8 @@ public without sharing class PartnerSignupFormController {
                 personAccount.Aadhar_Card_Number__pc = accountInfo.aadharCard;
                 personAccount.PAN_Number__pc = accountInfo.panCardNumber;
                 personAccount.Type = PartnerSignupFormConstants.Type;
-                personAccount.Gender__pc = accountInfo.gender;
                 personAccount.RecordTypeId = Schema.SObjectType.Account.getRecordTypeInfosByDeveloperName().get(PartnerSignupFormConstants.PERSON_ACC_REC_TYPE_NAME).getRecordTypeId();
                 insert personAccount;
-                System.debug(personAccount);
                 recordId = personAccount.Id;
             }
             return recordId;
@@ -144,7 +142,6 @@ public without sharing class PartnerSignupFormController {
                 con.PAN_Number__c = contactInfo.panCardNumber;
                 con.AccountId = contactInfo.accountId;
                 con.Is_Primary_Contact__c = contactInfo.isPrimaryContact;
-                con.Gender__c = contactInfo.gender;
                 con.RecordTypeId = Schema.SObjectType.Contact.getRecordTypeInfosByDeveloperName().get(PartnerSignupFormConstants.CON_EXTERNAL_REC_TYPE).getRecordTypeId();
                 insert con;
                 System.debug(con);

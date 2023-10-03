@@ -1,8 +1,25 @@
 @isTest
-private class ZohoWebhookHandlerTest {
+private class ZohoSignWebhookHandlerTest {
 
     @testSetup 
     static void setData() {
+        
+        User currentUser = [SELECT Id FROM User WHERE Id = :UserInfo.getUserId() LIMIT 1];
+        PermissionSet permissionSet = [SELECT Id FROM PermissionSet WHERE Name = 'Partner_Onboarding' LIMIT 1];
+
+        PermissionSetAssignment assignmentRecord;
+        List<PermissionSetAssignment> assignmentRecords = [SELECT Id FROM PermissionSetAssignment WHERE AssigneeId = :currentUser.Id AND PermissionSetId = :permissionSet.Id LIMIT 1];
+        
+        if (assignmentRecords.size() > 0) {
+            assignmentRecord = assignmentRecords[0];
+        } else {
+            PermissionSetAssignment perSetAssign = new PermissionSetAssignment();
+            perSetAssign.AssigneeId = currentUser.Id;
+            perSetAssign.PermissionSetId = permissionSet.Id;
+            insert perSetAssign;
+            assignmentRecord = perSetAssign; // Assign the newly inserted record to assignmentRecord
+        }
+        
         Account acc = new Account(Name = 'Test Account',NDA_Document_Id__c = 'NDA123', NDA_Document_Status__c = 'Signed',MSA_Document_Status__c = 'Signed',MSA_Document_Id__c = 'MSA456');
    		insert acc;
     }
@@ -20,7 +37,7 @@ private class ZohoWebhookHandlerTest {
         // Call the method to be tested
         Test.startTest();
         Test.setMock(HttpCalloutMock.class, new ZohoSignServiceMock());
-        ZohoWebhookHandler.handlePost();
+        ZohoSignWebhookHandler.handlePost();
         Test.stopTest();
 
         // Verify the changes in the database
@@ -40,7 +57,7 @@ private class ZohoWebhookHandlerTest {
 
         // Call the method to be tested
         Test.startTest();
-        ZohoWebhookHandler.handlePost();
+        ZohoSignWebhookHandler.handlePost();
         Test.stopTest();
 
         // Verify the changes in the database
