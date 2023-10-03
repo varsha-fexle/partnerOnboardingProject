@@ -456,8 +456,8 @@ export default class PartnerSignupForm extends LightningElement {
                     this.isLoaded = false;
                     if(result != null && result != undefined) {
                         if(result.length == this.label.REC_ID_LEN) {
-                            this.partnerId = result.accountId;
-                            this.accountObj.accountId = result.accountId;
+                            this.partnerId = result;
+                            this.accountObj.accountId = result;
                             this.searchScreen = false;
                             this.contactInfo = true;
                         } else {
