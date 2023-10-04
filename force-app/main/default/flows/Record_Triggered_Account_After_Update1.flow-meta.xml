@@ -148,91 +148,7 @@
         <nameSegment>SendEmailToSfAdmins</nameSegment>
         <versionSegment>1</versionSegment>
     </actionCalls>
-    <actionCalls>
-        <name>SendEmailForOffboardingRequest</name>
-        <label>SendEmailForOffboardingRequest</label>
-        <locationX>3394</locationX>
-        <locationY>1139</locationY>
-        <actionName>emailSimple</actionName>
-        <actionType>emailSimple</actionType>
-        <faultConnector>
-            <targetReference>Create_Exception_Record_For_Offboarding_Request</targetReference>
-        </faultConnector>
-        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
-        <inputParameters>
-            <name>emailAddressesArray</name>
-            <value>
-                <elementReference>varT_OffboardingEmails</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>emailSubject</name>
-            <value>
-                <stringValue>Partner Offboarding Request</stringValue>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>emailBody</name>
-            <value>
-                <elementReference>EmailTemplateForOffboardingRequest</elementReference>
-            </value>
-        </inputParameters>
-        <inputParameters>
-            <name>sendRichBody</name>
-            <value>
-                <booleanValue>true</booleanValue>
-            </value>
-        </inputParameters>
-        <nameSegment>emailSimple</nameSegment>
-        <versionSegment>1</versionSegment>
-    </actionCalls>
     <apiVersion>58.0</apiVersion>
-    <assignments>
-        <name>Assign_Account_User_Details</name>
-        <label>Assign Account User Details</label>
-        <locationX>3746</locationX>
-        <locationY>755</locationY>
-        <assignmentItems>
-            <assignToReference>varT_AccountUserName</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Loop_of_Get_HR_and_Account_User_Records.Name</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>varT_OffboardingEmails</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>Loop_of_Get_HR_and_Account_User_Records.Email</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Loop_of_Get_HR_and_Account_User_Records</targetReference>
-        </connector>
-    </assignments>
-    <assignments>
-        <name>Assign_Hr_User_Details</name>
-        <label>Assign Hr User Details</label>
-        <locationX>3482</locationX>
-        <locationY>755</locationY>
-        <assignmentItems>
-            <assignToReference>varT_HrUserName</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference>Loop_of_Get_HR_and_Account_User_Records.Name</elementReference>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference>varT_OffboardingEmails</assignToReference>
-            <operator>Add</operator>
-            <value>
-                <elementReference>Loop_of_Get_HR_and_Account_User_Records.Email</elementReference>
-            </value>
-        </assignmentItems>
-        <connector>
-            <targetReference>Loop_of_Get_HR_and_Account_User_Records</targetReference>
-        </connector>
-    </assignments>
     <assignments>
         <name>Assign_Links</name>
         <label>Assign Links</label>
@@ -266,7 +182,7 @@
     <decisions>
         <name>Check_Condition_For_Onboarding_Status_Values</name>
         <label>Check Condition For Onboarding Status Values</label>
-        <locationX>1986</locationX>
+        <locationX>1414</locationX>
         <locationY>323</locationY>
         <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
         <rules>
@@ -448,21 +364,6 @@
             </connector>
             <label>For Ready to Onboard</label>
         </rules>
-        <rules>
-            <name>For_Offboarding_Requested</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>$Record.Onboarding_Status__c</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <stringValue>Offboarding Requested</stringValue>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Get_HR_and_Account_User_Records</targetReference>
-            </connector>
-            <label>For Offboarding Requested</label>
-        </rules>
     </decisions>
     <decisions>
         <name>Check_Null_Condition</name>
@@ -484,46 +385,6 @@
                 <targetReference>Loop_Over_Contact_Records</targetReference>
             </connector>
             <label>Not Null</label>
-        </rules>
-    </decisions>
-    <decisions>
-        <name>Check_Type_Of_User</name>
-        <label>Check Type Of User</label>
-        <locationX>3746</locationX>
-        <locationY>647</locationY>
-        <defaultConnector>
-            <targetReference>Loop_of_Get_HR_and_Account_User_Records</targetReference>
-        </defaultConnector>
-        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
-        <rules>
-            <name>For_Hr_Team_User</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Loop_of_Get_HR_and_Account_User_Records.Username</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <elementReference>$Label.Hr_Team_UserName</elementReference>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Assign_Hr_User_Details</targetReference>
-            </connector>
-            <label>For Hr Team User</label>
-        </rules>
-        <rules>
-            <name>For_Account_Team_User</name>
-            <conditionLogic>and</conditionLogic>
-            <conditions>
-                <leftValueReference>Loop_of_Get_HR_and_Account_User_Records.Username</leftValueReference>
-                <operator>EqualTo</operator>
-                <rightValue>
-                    <elementReference>$Label.Account_Team_UserName</elementReference>
-                </rightValue>
-            </conditions>
-            <connector>
-                <targetReference>Assign_Account_User_Details</targetReference>
-            </connector>
-            <label>For Account Team User</label>
         </rules>
     </decisions>
     <decisions>
@@ -592,20 +453,6 @@
     <interviewLabel>Record Triggered: Account - After Update {!$Flow.CurrentDateTime}</interviewLabel>
     <label>Record Triggered: Account - After Update</label>
     <loops>
-        <name>Loop_of_Get_HR_and_Account_User_Records</name>
-        <label>Loop of Get HR and Account User Records</label>
-        <locationX>3394</locationX>
-        <locationY>539</locationY>
-        <collectionReference>Get_HR_and_Account_User_Records</collectionReference>
-        <iterationOrder>Asc</iterationOrder>
-        <nextValueConnector>
-            <targetReference>Check_Type_Of_User</targetReference>
-        </nextValueConnector>
-        <noMoreValuesConnector>
-            <targetReference>Get_Contact_Records</targetReference>
-        </noMoreValuesConnector>
-    </loops>
-    <loops>
         <name>Loop_Over_Contact_Records</name>
         <label>Loop Over Contact Records</label>
         <locationX>1194</locationX>
@@ -638,20 +485,6 @@
         </value>
     </processMetadataValues>
     <processType>AutoLaunchedFlow</processType>
-    <recordCreates>
-        <name>Create_Exception_Record_For_Offboarding_Request</name>
-        <label>Create Exception Record</label>
-        <locationX>3658</locationX>
-        <locationY>1247</locationY>
-        <inputAssignments>
-            <field>Exception_Details__c</field>
-            <value>
-                <elementReference>$Flow.FaultMessage</elementReference>
-            </value>
-        </inputAssignments>
-        <object>Custom_Exception__c</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordCreates>
     <recordCreates>
         <name>Create_Exception_Records_For_Ready_To_Onboard_Comp</name>
         <label>Create Exception Records</label>
@@ -695,27 +528,6 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <recordLookups>
-        <name>Get_Contact_Records</name>
-        <label>Get Contact Records</label>
-        <locationX>3394</locationX>
-        <locationY>1031</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>SendEmailForOffboardingRequest</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>$Record.Reporting_Manager__c</elementReference>
-            </value>
-        </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>Contact</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-    <recordLookups>
         <name>Get_Contacts_Related_to_Account</name>
         <label>Get Contacts Related to Account</label>
         <locationX>1458</locationX>
@@ -734,34 +546,6 @@
         </filters>
         <getFirstRecordOnly>false</getFirstRecordOnly>
         <object>Contact</object>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-    <recordLookups>
-        <name>Get_HR_and_Account_User_Records</name>
-        <label>Get HR and Account User Records</label>
-        <locationX>3394</locationX>
-        <locationY>431</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Loop_of_Get_HR_and_Account_User_Records</targetReference>
-        </connector>
-        <filterLogic>or</filterLogic>
-        <filters>
-            <field>Username</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>$Label.Hr_Team_UserName</elementReference>
-            </value>
-        </filters>
-        <filters>
-            <field>Username</field>
-            <operator>EqualTo</operator>
-            <value>
-                <elementReference>$Label.Account_Team_UserName</elementReference>
-            </value>
-        </filters>
-        <getFirstRecordOnly>false</getFirstRecordOnly>
-        <object>User</object>
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <recordLookups>
@@ -807,7 +591,7 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordLookups>
     <start>
-        <locationX>1860</locationX>
+        <locationX>1288</locationX>
         <locationY>0</locationY>
         <connector>
             <targetReference>Check_Condition_For_Onboarding_Status_Values</targetReference>
@@ -826,11 +610,6 @@
         <name>EmailTemplateForIndividualAccount</name>
         <isViewedAsPlainText>true</isViewedAsPlainText>
         <text>Dear {!Get_User_Records.Name},&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;I hope this email finds you well. We are pleased to inform you that we have successfully completed the document verification process for your onboarding with FEXLE. We appreciate your cooperation in providing the necessary documents promptly.&lt;br/&gt;&lt;br/&gt;As we move forward, we are excited to assist you in creating the essential accounts that will grant you access to the resources and tools necessary to excel in your role. These accounts include your Gmail and HRMS accounts. Both are imparative in ensuring seamless communication and effective engagement within our collaborative environment.&lt;br/&gt;&lt;br/&gt;{!varF_AccountLink}, we kindly request your assistance in creating your Gmail account. This account will enable you to stay connected with the FEXLE team, manage your communications efficiently, and access our suite of productivity tools.&lt;br/&gt;&lt;br/&gt;Your HRMS account will provide a centralized platform to conveniently manage your employee profile, leave applications, and other HR-related matters.&lt;br/&gt;&lt;br/&gt;Once again, congratulations on successfully completing the document verification process. We look forward to having you on board and contributing to our collective success.&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;Best regards,&lt;br/&gt;FEXLE Services Pvt Ltd</text>
-    </textTemplates>
-    <textTemplates>
-        <name>EmailTemplateForOffboardingRequest</name>
-        <isViewedAsPlainText>true</isViewedAsPlainText>
-        <text>Dear {!varT_HrUserName} and {!varT_AccountUserName},&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;I trust this email finds you well. We are composing this correspondence to formally initiate the offboarding process for our partner, {!varF_AccountLink}, from our organization. This decision has been made in alignment with our business requirements and strategic goals.&lt;br/&gt;&lt;br/&gt;In preparation for the departure of our partner, we have outlined the offboarding process along with the necessary steps to ensure a smooth transition. Below are the relevant details for the offboarding process:&lt;br/&gt;• Partner Name : {!varF_AccountLink}&lt;br/&gt;• Last Working Day : {!$Record.Last_Working_Day__c}&lt;br/&gt;• Project/Engagement : {!$Record.Project_Engagement__c}&lt;br/&gt;• Reporting Manager : {!Get_Contact_Records.Name}&lt;br/&gt;• Reason for Offboarding: {!$Record.Reason_for_Offboarding__c}&lt;br/&gt;&lt;br/&gt;&lt;b&gt;Offboarding Steps:&lt;/b&gt;&lt;br/&gt;• Access Termination : Please ensure that all access rights and credentials related to our systems, platforms, and resources are promptly revoked.&lt;br/&gt;• Return of Assets : {!varF_AccountLink} should return any company-owned assets, such as laptops, mobile devices, access cards, and any other equipment, as per company policy.&lt;br/&gt;• Knowledge Transfer: If applicable, please facilitate the transfer of any knowledge or ongoing projects to relevant team members to ensure a smooth transition.&lt;br/&gt;• Outstanding Dues/Settlement: {!varT_AccountUserName}, kindly review and settle any outstanding dues or payments to be made to {!varF_AccountLink} under our contractual agreements.&lt;br/&gt;• Exit Interview: We encourage you to conduct an exit interview with Harry Potter to gather feedback that can help us improve our processes and collaborations in the future.&lt;br/&gt;&lt;br/&gt;We kindly request the HR and Accounts departments to collaborate closely to ensure a seamless offboarding process.&lt;br/&gt;&lt;br/&gt;If there are any particular forms, documents, or procedures integral to {!varF_AccountLink} compliance with the offboarding process, we kindly request you to apprise us of the same at your earliest convenience.&lt;br/&gt;&lt;br/&gt;Should you necessitate further details or encounter any distinctive facets that warrant consideration during this offboarding, please do not hesitate to inform us.&lt;br/&gt;&lt;br/&gt;Your timely focus on this matter is greatly valued, and we extend our gratitude for your dedication to facilitating a seamless transition for all stakeholders involved.&lt;br/&gt;&lt;br/&gt;&lt;br/&gt;Best Regards,&lt;br/&gt;FEXLE Services Pvt Ltd</text>
     </textTemplates>
     <textTemplates>
         <name>EmailTemplateForSfAdmins</name>
