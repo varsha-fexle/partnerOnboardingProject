@@ -24,17 +24,23 @@ public class ZohoSignRequestJSONBodyBuilder {
         ZohoSignWrapper zohoSignWrap = new ZohoSignWrapper();
         ZohoSignWrapper.Templates zohoTemplate = new ZohoSignWrapper.Templates();
         ZohoSignWrapper.FieldData zohoFieldData = new ZohoSignWrapper.FieldData();
-        ZohoSignWrapper.FieldTextData zohoFieldtextData = new ZohoSignWrapper.FieldTextData();
+        ZohoSignWrapper.FieldTextData zohoFieldTextData = new ZohoSignWrapper.FieldTextData();
         ZohoSignWrapper.FieldBooleanData zohoFieldBooleanData = new ZohoSignWrapper.FieldBooleanData();
         ZohoSignWrapper.FieldDateData zohoFieldDateData = new ZohoSignWrapper.FieldDateData();
         ZohoSignWrapper.FieldRadioData zohoFieldRadioData = new ZohoSignWrapper.FieldRadioData();
         
         // Populate text data with recipient and company information
-        zohoFieldtextData.VendorName = recepientName;
-        zohoFieldtextData.Company = companyName;
+        zohoFieldTextData.vendorName = recepientName;
+        zohoFieldTextData.company = companyName;
+         
+        // Populate date data with today's date
+        Date dToday = Date.today();
+        DateTime dt = DateTime.newInstance(dToday.year(), dToday.month(),dToday.day());
+        String dateStr = dt.format('yyyy-MM-dd');
+        zohoFieldDateData.dateOfSign = dateStr;
 
         // Assign different field data components to the main field data         
-        zohoFieldData.field_text_data = zohoFieldtextData;
+        zohoFieldData.field_text_data = zohoFieldTextData;
         zohoFieldData.field_boolean_data = zohoFieldBooleanData;
         zohoFieldData.field_date_data = zohoFieldDateData;
         zohoFieldData.field_radio_data = zohoFieldRadioData;

@@ -16,8 +16,8 @@ public class ZohoSignWrapper {
     }
 
     public class FieldTextData {
-        public String VendorName { get; set; }
-        public String Company { get; set; }
+        public String vendorName { get; set; }
+        public String company { get; set; }
     }
 
     public class FieldBooleanData {
@@ -25,6 +25,8 @@ public class ZohoSignWrapper {
     }
 
     public class FieldDateData {
+        
+        public String dateOfSign { get; set; }
 
     }
 
