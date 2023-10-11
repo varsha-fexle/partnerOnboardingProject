@@ -151,8 +151,7 @@ export default class UploadDocuments extends LightningElement {
         this.showDocumentsError = false;
         this.showDocumentsError = false;
         if(this.isgstuploaded == true && this.ispanuploaded == true && this.iscertuploaded == true && this.ischequeuploaded == true) {
-        
-            this.template.querySelector('c-common-toast').showToast('success','<strong>'+this.label.DOCUMENTS_UPLOADED_SUCCESSFULLY+'<strong/>','utility:success',3000);
+            //this.template.querySelector('c-common-toast').showToast('success','<strong>'+this.label.DOCUMENTS_UPLOADED_SUCCESSFULLY+'<strong/>','utility:success',3000);
             const selectedEvent = new CustomEvent("documentsupload", {
                 detail: {
                     companyDocuments : this.enableDocumentScreen,

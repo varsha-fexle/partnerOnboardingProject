@@ -384,7 +384,7 @@ export default class PartnerSignupForm extends LightningElement {
                 accountInfoJSON : JSON.stringify(this.accountObj)
             }).then(result=>{
                 if(result.length == this.label.REC_ID_LEN) {
-                    this.template.querySelector('c-common-toast').showToast('success','<strong>'+this.label.PERSON_ACCOUNT_IS_CREATED+'<strong/>','utility:success',3000);
+                    //this.template.querySelector('c-common-toast').showToast('success','<strong>'+this.label.PERSON_ACCOUNT_IS_CREATED+'<strong/>','utility:success',3000);
                     this.instruction = false;
                     this.personalInfo = false;
                     this.accountObj.accountId = result;
@@ -641,12 +641,12 @@ export default class PartnerSignupForm extends LightningElement {
                         if(result != null) {
                             this.isLoaded = false;
                             if(result.length == this.label.REC_ID_LEN) {
-                                if(this.accountObj.accountId != null && this.accountObj.accountId != undefined && this.accountObj.accountId != '') {
+                                /*if(this.accountObj.accountId != null && this.accountObj.accountId != undefined && this.accountObj.accountId != '') {
                                     this.template.querySelector('c-common-toast').showToast('success','<strong>'+this.label.ACCOUNT_IS_UPDATED+'<strong/>','utility:success',1000);
                                 }
                                 else{
                                     this.template.querySelector('c-common-toast').showToast('success','<strong>'+this.label.ACCOUNT_IS_CREATED+'<strong/>','utility:success',1000);    
-                                }
+                                }*/
                                 this.partnerId = result;
                                 this.accountObj.accountId = result;
                                 this.disabled = true;
@@ -802,7 +802,7 @@ export default class PartnerSignupForm extends LightningElement {
                                 this.contactObj = {};
                                 this.contactObj.isPrimaryContact = false;
                             }
-                            this.template.querySelector('c-common-toast').showToast('success','<strong>'+this.label.CONTACT_IS_CREATED+'<strong/>','utility:success',2000);
+                            //this.template.querySelector('c-common-toast').showToast('success','<strong>'+this.label.CONTACT_IS_CREATED+'<strong/>','utility:success',2000);
                         } else { 
                             this.template.querySelector('c-common-toast').showToast('error','<strong>'+result+'<strong/>','utility:error',2000);    
                         }
