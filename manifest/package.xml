@@ -126,6 +126,7 @@
         <members>Thankyou_Text</members>
         <members>Upload_Complete</members>
         <members>Upload_Pdf_Files</members>
+        <members>Partner_Onboarding_Site_Url</members>
         <name>CustomLabel</name>
     </types>
     <types>
@@ -180,7 +181,6 @@
         <name>StaticResource</name>
     </types>
     <types>
-		<members>Account.VR_Check_Offboarding_Required_Fields</members>
 		<members>Account.VR_From_UI_Onboarding_Status</members>
 		<name>ValidationRule</name>
 	</types>

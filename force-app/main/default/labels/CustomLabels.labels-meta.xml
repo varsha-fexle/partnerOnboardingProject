@@ -309,6 +309,13 @@
         <value>If you are working/signing up as a company and you are the primary contact.</value>
     </labels>
     <labels>
+        <fullName>Partner_Onboarding_Site_Url</fullName>
+        <language>en_US</language>
+        <protected>false</protected>
+        <shortDescription>Partner Onboarding Site Url</shortDescription>
+        <value>https://fexleservices--dev5.sandbox.my.salesforce-sites.com/partnerOnboarding</value>
+    </labels>
+    <labels>
         <fullName>Partner_Value</fullName>
         <language>en_US</language>
         <protected>true</protected>
