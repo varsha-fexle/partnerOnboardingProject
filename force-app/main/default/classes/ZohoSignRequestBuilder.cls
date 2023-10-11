@@ -78,13 +78,13 @@ public without sharing class ZohoSignRequestBuilder {
     @param companyName The name of the company
     @return An HttpRequest object for sending the document for signing
     */
-    public static HttpRequest sendDocumentForSignForNDA(String email,String recepientName,String companyName) {
+    public static HttpRequest sendDocumentForSignForNDA(String email,String recepientName,String companyName, String billingAddress) {
         try {
             ZohoSign_Master_Settings__c zohoSettings = ZohoSign_Master_Settings__c.getOrgDefaults();
             String endpoint = zohoSettings.base_url__c + zohoSettings.version__c + '/templates/'+zohoSettings.nda_template_id__c+'/createdocument';
             return buildRequest(
                         endpoint,
-                        ZohoSignRequestJSONBodyBuilder.createJsonForSendDocForSign(email, recepientName, zohoSettings.nda_action_id__c, companyName),
+                        ZohoSignRequestJSONBodyBuilder.createJsonForSendDocForSign(email, recepientName, zohoSettings.nda_action_id__c, companyName, billingAddress),
                         ZohoSignConstants.METHOD_TYPE_POST);
         }
         catch(Exception e) {
@@ -100,13 +100,13 @@ public without sharing class ZohoSignRequestBuilder {
     @param companyName The name of the company
     @return An HttpRequest object for sending the document for signing
     */
-    public static HttpRequest sendDocumentForSignForMSA(String email,String recepientName, String companyName) {
+    public static HttpRequest sendDocumentForSignForMSA(String email, String recepientName, String companyName, String billingAddress) {
         try {
             ZohoSign_Master_Settings__c zohoSettings = ZohoSign_Master_Settings__c.getOrgDefaults();
             String endpoint = zohoSettings.base_url__c + zohoSettings.version__c + '/templates/'+zohoSettings.msa_template_id__c+'/createdocument';
             return buildRequest(
                         endpoint,
-                        ZohoSignRequestJSONBodyBuilder.createJsonForSendDocForSign(email, recepientName, zohoSettings.msa_action_id__c, companyName),
+                        ZohoSignRequestJSONBodyBuilder.createJsonForSendDocForSign(email, recepientName, zohoSettings.msa_action_id__c, companyName, billingAddress),
                         ZohoSignConstants.METHOD_TYPE_POST);
         }
         catch(Exception e) {

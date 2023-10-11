@@ -18,7 +18,7 @@ public class ZohoSignRequestJSONBodyBuilder {
      * @param companyName   The name of the company.
      * @return A JSON representation of the document signing request.
      */
-     public static String createJsonForSendDocForSign(String email, String recepientName, String actionId, String companyName) {
+     public static String createJsonForSendDocForSign(String email, String recepientName, String actionId, String companyName, String billingAddress) {
          
 		// Create instances for different components of the Zoho Sign request
         ZohoSignWrapper zohoSignWrap = new ZohoSignWrapper();
@@ -32,7 +32,11 @@ public class ZohoSignRequestJSONBodyBuilder {
         // Populate text data with recipient and company information
         zohoFieldTextData.vendorName = recepientName;
         zohoFieldTextData.company = companyName;
-         
+        zohoFieldTextData.recipientAddress = billingAddress;
+        zohoFieldTextData.resourceTitle = 'Authorized Signatory';
+        zohoFieldTextData.primaryContactEmailId = email;
+      
+        
         // Populate date data with today's date
         Date dToday = Date.today();
         DateTime dt = DateTime.newInstance(dToday.year(), dToday.month(),dToday.day());
