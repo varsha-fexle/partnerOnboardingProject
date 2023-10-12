@@ -464,9 +464,6 @@ export default class PartnerSignupForm extends LightningElement {
                             this.template.querySelector('c-common-toast').showToast('error','<strong>'+result+'<strong/>','utility:error',2000);
                         }
                     }
-                    else {
-                        this.template.querySelector('c-common-toast').showToast('error','<strong>'+this.label.NOT_FOUND+'<strong/>','utility:warning',5000);   
-                    }
                 }).catch(error=>{
                         this.isLoaded = false;
                         this.template.querySelector('c-common-toast').showToast('error','<strong>'+error+'<strong/>','utility:error',5000);     

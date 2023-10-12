@@ -63,7 +63,7 @@ public class ZohoSignServiceTest {
 
     // Test method for sending a document for sign for a Person Account
     @IsTest
-    public static void sendDocumentForSignForPersonAccountTest() {
+    public static void testSendDocumentForSignForPersonAccount() {
         
         // Set up mock HTTP callouts
         Test.setMock(HttpCalloutMock.class, new ZohoSignServiceMock()); 
@@ -73,9 +73,7 @@ public class ZohoSignServiceTest {
         
         // Start test execution
         Test.startTest();
-        
         update account;
-        //ZohoSignService.sendDocumentForSign(accList);
         Test.stopTest();
         
         // Verify the onboarding status of the Account
@@ -85,12 +83,13 @@ public class ZohoSignServiceTest {
     
     // Test method for sending a document for sign for a Company Account
     @IsTest
-    public static void sendDocumentForSignForCompanyAccountTest() {
+    public static void testSendDocumentForSignForCompanyAccount() {
         // Set up mock HTTP callouts
         Test.setMock(HttpCalloutMock.class, new ZohoSignServiceMock()); 
         
         Account account = [SELECT Verification_Status__c FROM Account WHERE Name = 'Test Company' AND RecordTypeId=:partnerRecordTypeId LIMIT 1];
         account.Verification_Status__c = 'Verified';
+        
         // Start test execution
         Test.startTest();
         update account;

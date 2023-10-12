@@ -45,7 +45,7 @@ public class ZohoSignService {
                 // If the account is a person account, set details accordingly.
                 email = account.PersonEmail;
                 recepientName = account.FirstName + ' ' + account.LastName;
-                billingAddress = account.BillingStreet + ' ' + account.BillingCity + ' ' + account.BillingState + ' ' + account.BillingPostalCode;
+                billingAddress = account.BillingStreet + ', ' + account.BillingCity + ', ' + account.BillingState + ' - ' + account.BillingPostalCode;
                 companyName = recepientName;
             } else {
                 // If the account is not a person account, fetch primary contact details.
@@ -55,7 +55,7 @@ public class ZohoSignService {
                     email = primaryContact.Email;
                     recepientName = primaryContact.Name;
                     companyName = account.Name;
-                    billingAddress = account.BillingStreet + ' ' + account.BillingCity + ' ' + account.BillingState + ' ' + account.BillingPostalCode;
+                    billingAddress = account.BillingStreet + ', ' + account.BillingCity + ', ' + account.BillingState + ' - ' + account.BillingPostalCode;
                 }
             }
 
@@ -63,14 +63,18 @@ public class ZohoSignService {
             HttpRequest requestFirst = ZohoSignRequestBuilder.sendDocumentForSignForNDA(email, recepientName, companyName, billingAddress);
             Http httpForNda = new Http();
             HttpResponse responseFirst = httpForNda.send(requestFirst);
+            if(responseFirst.getBody().indexOf('code=12000, message=Purchase Zoho Sign credits to send documents via API., requests=null, status=failure') != -1) {
+                PartnerSignupExceptionHandler.logException(responseFirst.getBody(), 0 , 'sendDocumentForSignAsync', 'ZohoSignService');
+            }
             ZohoSignResponseParser.Response resultForNdaDoc = ZohoSignResponseParser.sendDocOutForSignResp(responseFirst.getBody());
-            System.debug(resultForNdaDoc);
 
             HttpRequest requestSecond = ZohoSignRequestBuilder.sendDocumentForSignForMSA(email, recepientName, companyName, billingAddress);
             Http httpForMsa = new Http();
             HttpResponse responseSecond = httpForMsa.send(requestSecond);
+            if(responseSecond.getBody().indexOf('code=12000, message=Purchase Zoho Sign credits to send documents via API., requests=null, status=failure') != -1) {
+                PartnerSignupExceptionHandler.logException(responseSecond.getBody(), 0 , 'sendDocumentForSignAsync', 'ZohoSignService');
+            }
             ZohoSignResponseParser.Response resultForMsaDoc = ZohoSignResponseParser.sendDocOutForSignResp(responseSecond.getBody());
-            System.debug(resultForMsaDoc);
 
             // Update account fields based on the ZohoSign responses.
             if (account.Verification_Status__c == 'Pending Verification') {

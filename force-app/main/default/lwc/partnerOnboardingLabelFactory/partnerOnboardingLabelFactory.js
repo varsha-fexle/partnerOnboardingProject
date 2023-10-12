@@ -25,7 +25,6 @@ import INVALID_AADHAR_CARD_NUMBER from '@salesforce/label/c.Invalid_Aadhar_Card_
 import CONTACT_INFO from '@salesforce/label/c.Contact_Info';
 import REC_ID_LEN from '@salesforce/label/c.Length_of_Record_Id';
 import INVALID_WEBSITE from '@salesforce/label/c.Invalid_Website';
-import NOT_FOUND from '@salesforce/label/c.Company_Not_Found';
 import ACCOUNT_IS_UPDATED from '@salesforce/label/c.Account_Is_Updated';
 import FIRST_DIGIT_OF_AADHAR_CARD_NUM_ERROR from '@salesforce/label/c.First_Digit_of_Aadhar_Card_Number';
 import ACCOUNT_IS_CREATED from '@salesforce/label/c.Account_Is_Created';
@@ -82,7 +81,6 @@ const labels = {
     "CONTACT_INFO" : CONTACT_INFO,
     "REC_ID_LEN" : REC_ID_LEN,
     "INVALID_WEBSITE" : INVALID_WEBSITE,
-    "NOT_FOUND" : NOT_FOUND,
     "ACCOUNT_IS_UPDATED" : ACCOUNT_IS_UPDATED,
     "FIRST_DIGIT_OF_AADHAR_CARD_NUM_ERROR" : FIRST_DIGIT_OF_AADHAR_CARD_NUM_ERROR,
     "ACCOUNT_IS_CREATED" : ACCOUNT_IS_CREATED,
