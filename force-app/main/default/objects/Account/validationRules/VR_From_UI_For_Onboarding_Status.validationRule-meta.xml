@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VR_From_UI_For_Onboarding_Status</fullName>
+    <active>true</active>
+    <errorConditionFormula>ISPICKVAL( Onboarding_Status__c , &apos;Approval Requested&apos;) &amp;&amp; Is_Updated_From_UI__c == true</errorConditionFormula>
+    <errorDisplayField>Onboarding_Status__c</errorDisplayField>
+    <errorMessage>You cannot updated this field to Approval Requested</errorMessage>
+</ValidationRule>
