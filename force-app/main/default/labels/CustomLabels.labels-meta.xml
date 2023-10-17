@@ -99,13 +99,6 @@
         <value>comCertPdf</value>
     </labels>
     <labels>
-        <fullName>Company_Not_Found</fullName>
-        <language>en_US</language>
-        <protected>false</protected>
-        <shortDescription>Company Not Found</shortDescription>
-        <value>Company Not Found</value>
-    </labels>
-    <labels>
         <fullName>Compny_Info</fullName>
         <language>en_US</language>
         <protected>false</protected>

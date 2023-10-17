@@ -80,7 +80,6 @@
         <members>Comp_Cert_Uploaded</members>
         <members>Company_Certificate</members>
         <members>Company_Certificate_Pdf</members>
-        <members>Company_Not_Found</members>
         <members>Compny_Info</members>
         <members>Contact_Info</members>
         <members>Contact_Is_Created</members>
@@ -136,7 +135,6 @@
         <name>CustomObject</name>
     </types>
     <types>
-        <members>Custom_Exception__c</members>
         <members>Onboarding_Request__c</members>
         <name>CustomTab</name>
     </types>
@@ -181,7 +179,7 @@
         <name>StaticResource</name>
     </types>
     <types>
-		<members>Account.VR_From_UI_Onboarding_Status</members>
+		<members>Account.VR_From_UI_For_Onboarding_Status</members>
 		<name>ValidationRule</name>
 	</types>
     <version>55.0</version>

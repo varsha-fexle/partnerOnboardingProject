@@ -40,12 +40,14 @@ public class ZohoSignServiceTest {
         personAccount.Gender__pc = 'Male';
         personAccount.Type = 'Partner';
         personAccount.PersonEmail = 'test@test.com';
+        personAccount.Onboarding_Status__c = 'Onboarding Requested';
         personAccount.RecordTypeId = individualRecordTypeId;
         insert personAccount;
         
         // Create a test Company Account
         Account companyAccount = new Account();
         companyAccount.Name = 'Test Company';
+        companyAccount.Onboarding_Status__c = 'Onboarding Requested';
         companyAccount.RecordTypeId = partnerRecordTypeId;
         insert companyAccount;
         
